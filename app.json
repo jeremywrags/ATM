@@ -10,22 +10,13 @@
     "repository": "https://github.com/jeremywrags/ATM.git",
     "logo": "https://aloha.force.com/img/logo198.png",        
     "env": {
-      "SECRET_TOKEN": {
-        "description": "A secret key for verifying the integrity of signed cookies.",
-        "generator": "secret"
+      "ClientID": {
+        "description": "This is your Markeitng Cloud Client ID from the Admin section"        
       },
-      "WEB_CONCURRENCY": {
-        "description": "The number of processes to run.",
-        "value": "5"
+      "ClientSeceret": {
+        "description": "This is your Markeitng Cloud Client Seceret from the Admin section"      
       }
     },
-    "formation": {
-      "web": {
-        "quantity": 2,
-        "size": "Performance-M"
-      }
-    },
-    "image": "heroku/ruby",
     "addons": [
       "openredis",
       {
