@@ -63,6 +63,11 @@ function getAuthToken(callback) {
   let buff = new Buffer(cics);  
   let base64data = buff.toString('base64');
   
+  console.log('ClientID: ' + ci);
+  console.log('ClientSeceret: ' + cs);
+  console.log('CombinedKey: ' + cics);
+  console.log('base64data: ' + base64data);
+  
   var options = { method: 'POST',
     url: 'https://na5.thunderhead.com/one/oauth2token',
     headers: 
