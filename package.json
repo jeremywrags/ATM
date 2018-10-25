@@ -1,16 +1,19 @@
 {
-  "name": "atm",
+  "name": "atm-machine",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "config": "^2.0.1",
     "cookie-parser": "~1.4.3",
+    "crypto-js": "^3.1.9-1",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "request": "^2.88.0"
   }
 }

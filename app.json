@@ -11,10 +11,13 @@
     "logo": "https://aloha.force.com/img/logo198.png",        
     "env": {
       "ClientID": {
-        "description": "This is your Markeitng Cloud Client ID from the Admin section"        
+        "description": "This is your Interaction Studio Client ID"        
       },
       "ClientSeceret": {
-        "description": "This is your Markeitng Cloud Client Seceret from the Admin section"      
+        "description": "This is your Interaction Studio Client Seceret"      
+      },
+      "CustomerKey": {
+        "description": "Please provide the email or Key for the customer that the offer will be served."      
       }
     }
   }

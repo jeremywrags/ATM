@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 var request = require("request");
 var config = require('config');
-console.log('NODE_CONFIG_DIR: ' + config.util.getEnv('NODE_CONFIG_DIR'));
-console.log('NODE_ENV: ' + config.util.getEnv('NODE_ENV'));
+console.log('ClientID: ' + process.env.ClientID);
+console.log('ClientID: ' + process.env.ClientSeceret);
+console.log('ClientID: ' + process.env.CustomerKey);
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,7 +25,7 @@ router.get('/balanceinquiry', function(req, res, next) {
         Authorization: 'Bearer ' + access_token,
         'Content-Type': 'application/json' },
       body: 
-      { customerKey: 'lauren.salesforcenz@gmail.com',
+      { customerKey: process.env.CustomerKey,
         uri: 'atm://atm/offer',
         properties: [ { name: 'action', value: 'balanceInquiry' } ] },
       json: true 
@@ -53,8 +55,8 @@ router.get('/balanceinquiry', function(req, res, next) {
 });
 
 function getAuthToken(callback) {
-  var ci = config.Credentials.ClientID;
-  var cs = config.Credentials.ClientSeceret
+  var ci = process.env.ClientID;
+  var cs = process.env.ClientSeceret;
   var cics = ci + ":" + cs;
   let buff = new Buffer(cics);  
   let base64data = buff.toString('base64');
