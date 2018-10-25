@@ -83,6 +83,7 @@ function getAuthToken(callback) {
       return callback(err);
     }
     try{
+      console.log('authTiokenBody: ' + body);
       callback(null, JSON.parse(body).access_token);
     }catch(err){
       callback(err);
