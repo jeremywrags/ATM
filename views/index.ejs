@@ -3,9 +3,156 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+      .atmWrapper{
+        background-color: #ef2315;
+        padding: 10px;
+        width: 40%;
+        border: 2px solid #ef2315;
+        border-radius: 25px;
+      }
+      .atmInnerWrapper{
+        background-color: Gray;
+        padding: 10px 10px;
+        border: 2px solid gray;
+        border-radius: 25px;
+      }
+      .atmTitle{
+        color: white;
+        background-color: darkgrey;
+        font-weight: bold;
+        font-size: 22px;
+        padding:10px;
+        text-align: center;
+        border: 2px solid white;
+        border-radius: 25px;
+      }
+      .atmScreenWrapper{
+        background-color: lightgray;
+        padding: 10px 10px;
+        border: 2px solid lightgray;
+        border-radius: 25px;
+      }
+      .atmButtonWrapper{
+        background-color: lightgray;
+        padding: 20px 40px 0px 40px;
+        width:100%;
+        height:100%;
+        border: 2px solid lightgray;
+        border-radius: 25px;
+      }
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $(".btn").on("click", function(){
+        if ( $( this ).hasClass( "atmnum" ) ) {
+            $("#atmScreen").append($(this).text());
+          setTimeout(function (){        
+            $('#atmScreen').text(function (_,txt) {
+              return txt.slice(0, -1);
+            });
+            $("#atmScreen").append("*");
+          }, 100); //           
+        }
+
+        if ( $( this ).hasClass( "atmclear" ) ) {
+          $("#atmScreen").html("Enter Your Pin: ");
+        }
+        if ( $( this ).hasClass( "atmcancel" ) ) {
+          $("#atmScreen").html("Enter Your Pin: ");
+        }
+        if ( $( this ).hasClass( "atmenter" ) ) {
+          $("#atmScreen").html("<p style='margin-top:0px;'>Balance Inquiry</p> ");
+          $("#atmScreen").append("<p style='margin-top:40px;'>Withdrawl</p> ");
+          $("#atmScreen").append("<p style='margin-top:40px;'>Deposit</p> ");
+          $("#atmScreen").append("<p style='margin-top:40px;'>Offers</p> ");
+        }
+        if ( $( this ).hasClass( "atmbalance" ) ) {
+          $.ajax({
+            'url' : '/balanceinquiry',
+            'type' : 'GET',            
+            'success' : function(data) {                              
+                $("#atmScreen").html("<p style='margin-top:0px;'>Available for withdrawl:" + data.Balance + "<br><br>You may be interested in this offer?</p>" + data.Body); 
+
+            },
+            'error' : function(request,error)
+            {
+                alert("Request: "+JSON.stringify(request));
+            }
+          });          
+        }
+      })
+    });      
+    </script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <div class="atmWrapper" id="atmWrapper">        
+      <div class="atmInnerWrapper" id="atmInnerWrapper">        
+          <img src="images/atmlogo2.png" style="height:50px; display:block; margin:auto; margin-bottom:5px;">
+          <div class="atmScreenWrapper" style="margin-bottom:5px;">
+              <table style="table-layout: fixed; width: 100%;">
+                <tr>
+                  <td style="width:10%; vertical-align: top;">
+                      <button type="button" class="btn btn-light atmbalance">></button><br><br>
+                      <button type="button" class="btn btn-light atmwithdrawl">></button><br><br>
+                      <button type="button" class="btn btn-light atmdeposit">></button><br><br>
+                      <button type="button" class="btn btn-light atmoffers">></button><br><br>
+                  </td>
+                  <td style="width:80%;">
+                    <div id="atmScreen" style="background-color:white; height: 300px;width: 100%; font-weight: bold; padding: 5px;">
+                      Enter Your Pin: 
+                    </div>
+                  </td>
+                  <td style="width:10%; text-align: right; vertical-align: top;">
+                      <button type="button" class="btn btn-light"><</button><br><br>
+                      <button type="button" class="btn btn-light"><</button><br><br>
+                      <button type="button" class="btn btn-light"><</button><br><br>
+                      <button type="button" class="btn btn-light"><</button><br><br>
+                  </td>
+                </tr>
+              </table>
+          </div>             
+          <div class="atmButtonWrapper">
+              <table style="table-layout: fixed; width: 80%;margin: 0 auto;">
+                <tr>
+                  <td>
+                      <button type="button" class="btn btn-light btn-block atmnum">1</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum">4</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum">7</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum"><</button><br>
+                      
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-light btn-block atmnum">2</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum">5</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum">8</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum">0</button><br>
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-light btn-block atmnum">3</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum">6</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum">9</button><br>
+                      <button type="button" class="btn btn-light btn-block atmnum">></button><br>
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-light btn-block atmenter">Enter</button><br>
+                      <button type="button" class="btn btn-light btn-block atmclear">Clear</button><br>
+                      <button type="button" class="btn btn-light btn-block atmcancel">Cancel</button><br>
+                      <button type="button" class="btn btn-light btn-block">&nbsp;</button><br>
+                  </td>                  
+                </tr>
+              </table>
+          </div>                   
+      </div>    
+    </div>
+   
   </body>
 </html>
