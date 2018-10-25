@@ -16,6 +16,8 @@ router.get('/', function(req, res, next) {
 router.get('/balanceinquiry', function(req, res, next) {  
   
   getAuthToken(function(err, access_token){  
+
+    console.log('access_token: ' + access_token);
     var options2 = { method: 'POST',
       url: 'https://na5.thunderhead.com/one/oauth2/rt/api/2.0/interaction',
       qs: { sk: 'ONE-LJBKEO4Y7J-5669' },
