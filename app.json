@@ -1,0 +1,23 @@
+{
+  "name": "IS ATM Machine",
+  "description": "Demonstrates how an ATM could interact with Interaction studio.",
+  "keywords": [
+    "ATM",
+    "IS"
+  ],
+  "website": "/",
+  "repository": "https://github.com/jeremywrags/IS_ATM.git",
+  "logo": "",
+  "env": {
+    "NODE_ENV": {
+      "description": "Sets the NODE ENV variable to production",
+      "value": "prod"
+    },
+    "clientID": {
+      "description": "ClientID from your Marketing Cloud Account"      
+    },
+    "clientSeceret": {
+      "description": "ClientSceret from your Marketing Cloud Account"      
+    }
+  }
+}
