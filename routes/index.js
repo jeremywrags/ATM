@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require("request");
+var base64 = require('base-64');
 var config = require('config');
 console.log('ClientID: ' + process.env.ClientID);
 console.log('ClientID: ' + process.env.ClientSeceret);
@@ -61,12 +62,14 @@ function getAuthToken(callback) {
   var cs = process.env.ClientSeceret;
   var cics = ci + ":" + cs;
   let buff = new Buffer(cics);  
-  let base64data = buff.toString('base64');
-  
+  let base64data2 = buff.toString('base64');
+  let base64data = base64.encode(buff);
+
   console.log('ClientID: ' + ci);
   console.log('ClientSeceret: ' + cs);
   console.log('CombinedKey: ' + cics);
   console.log('base64data: ' + base64data);
+  console.log('base64data2: ' + base64data2);
   
   var options = { method: 'POST',
     url: 'https://na5.thunderhead.com/one/oauth2token',
