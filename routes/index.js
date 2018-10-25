@@ -75,7 +75,7 @@ function getAuthToken(callback) {
       { 'Content-Type': 'application/x-www-form-urlencoded',
         'Postman-Token': 'e4db24b7-3586-407e-b330-bd69d6373d66',
         'Cache-Control': 'no-cache',
-        Authorization: 'Basic ' + base64data + 'YQ==' },     
+        Authorization: 'Basic ' + base64data },     
     form: { grant_type: 'client_credentials' } 
   };
 
